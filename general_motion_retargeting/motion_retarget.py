@@ -33,14 +33,14 @@ class GeneralMotionRetargeting:
             print("Use IK config: ", IK_CONFIG_DICT[src_human][tgt_robot])
         
         # compute the scale ratio based on given human height and the assumption in the IK config
-        if actual_human_height is not None:
-            ratio = actual_human_height / ik_config["human_height_assumption"]
-        else:
-            ratio = 1.0
+        # if actual_human_height is not None:
+        #     ratio = actual_human_height / ik_config["human_height_assumption"]
+        # else:
+        #     ratio = 1.0
             
         # adjust the human scale table
         for key in ik_config["human_scale_table"].keys():
-            ik_config["human_scale_table"][key] = ik_config["human_scale_table"][key] * ratio
+            ik_config["human_scale_table"][key] = ik_config["human_scale_table"][key] #* ratio
     
 
         # used for retargeting

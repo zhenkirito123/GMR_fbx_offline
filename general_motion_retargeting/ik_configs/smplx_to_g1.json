@@ -6,22 +6,22 @@
     "use_ik_match_table1": true,
     "use_ik_match_table2": true,
     "human_scale_table": {
-        "pelvis": 0.9,
-        "spine3": 0.9,
+        "pelvis": 0.67,
+        "spine3": 0.67,
 
-        "left_hip": 0.9,
-        "right_hip": 0.9,
-        "left_knee": 0.9,
-        "right_knee": 0.9,
-        "left_foot": 0.9,
-        "right_foot": 0.9,
+        "left_hip": 0.67,
+        "right_hip": 0.67,
+        "left_knee": 0.67,
+        "right_knee": 0.67,
+        "left_foot": 0.67,
+        "right_foot": 0.67,
 
-        "left_shoulder": 0.8,
-        "right_shoulder": 0.8,
-        "left_elbow": 0.8,
-        "right_elbow": 0.8,
-        "left_wrist": 0.8,
-        "right_wrist": 0.8
+        "left_shoulder": 0.67,
+        "right_shoulder": 0.67,
+        "left_elbow": 0.67,
+        "right_elbow": 0.67,
+        "left_wrist": 0.67,
+        "right_wrist": 0.67
     },
 
     "ik_match_table1": {

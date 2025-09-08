@@ -27,6 +27,9 @@ IK_CONFIG_DICT = {
         "hightorque_hi": IK_CONFIG_ROOT / "smplx_to_hi.json",
         "galaxea_r1pro": IK_CONFIG_ROOT / "smplx_to_r1pro.json",
     },
+    "intermimic":{
+        "unitree_g1": IK_CONFIG_ROOT / "smplx_to_g1.json",
+    },
     "bvh":{
         "unitree_g1": IK_CONFIG_ROOT / "bvh_to_g1.json",
         "booster_t1": IK_CONFIG_ROOT / "bvh_to_t1.json",
