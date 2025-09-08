@@ -1,6 +1,7 @@
 import argparse
 import pathlib
 import time
+import joblib
 from general_motion_retargeting import GeneralMotionRetargeting as GMR
 from general_motion_retargeting import RobotMotionViewer
 from rich import print
@@ -84,7 +85,33 @@ if __name__ == "__main__":
     print(f"Loading OptiTrack FBX motion file: {args.motion_file}")
     data_frames = load_optitrack_fbx_motion_file(args.motion_file)
     print(f"Loaded {len(data_frames)} frames")
-    
+
+    # smplx_joints = [
+    #     'Hips', 'left_hip', 'right_hip', 'spine1', 'left_knee', 'right_knee', 'spine2', 'left_ankle', 'right_ankle', 'spine3', 'left_foot', 'right_foot', 'neck', 'left_collar', 'right_collar', 'head', 'left_shoulder', 'right_shoulder', 'left_elbow', 'right_elbow', 'left_wrist', 'right_wrist', 'left_middle1', 'right_middle1'
+    # ]
+    smplx_joints = [
+        'Hips', 'LeftUpLeg', 'RightUpLeg', 'Spine', 'LeftLeg', 'RightLeg', 'Spine1', 'LeftFoot', 'RightFoot', 'Spine1', 'LeftToeBase', 'RightToeBase', 'Neck', 'LeftShoulder', 'RightShoulder', 'Head', 'LeftShoulder', 'RightShoulder', 'LeftArm', 'RightArm', 'LeftHand', 'RightHand', 'LeftHandMiddle1', 'RightHandMiddle1'
+    ]
+    joint_pos = []
+    root_rot = []
+    for i in range(len(data_frames)):
+        sub_joint_pos = []
+        for joint in smplx_joints:
+            sub_joint_pos.append(data_frames[i][joint][0])
+        joint_pos.append(sub_joint_pos)
+        root_rot.append(data_frames[i]['Hips'][1])
+    joint_pos = np.array(joint_pos)
+    root_rot = np.array(root_rot)[..., [1,2,3,0]]
+
+    phc_data = {
+        "joints": joint_pos,
+        "root_rot": root_rot,
+    }
+    with open(args.save_path, "wb") as f:
+        joblib.dump(phc_data, f)
+        print(f"Saved to {args.save_path}")
+
+    exit()
     
     # Initialize the retargeting system with fbx configuration
     retargeter = GMR(

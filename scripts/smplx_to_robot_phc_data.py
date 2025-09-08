@@ -72,7 +72,30 @@ if __name__ == "__main__":
     # align fps
     tgt_fps = 30
     smplx_data_frames, aligned_fps = get_smplx_data_offline_fast(smplx_data, body_model, smplx_output, tgt_fps=tgt_fps)
-    
+
+    smplx_joints = [
+        'pelvis', 'left_hip', 'right_hip', 'spine1', 'left_knee', 'right_knee', 'spine2', 'left_ankle', 'right_ankle', 'spine3', 'left_foot', 'right_foot', 'neck', 'left_collar', 'right_collar', 'head', 'left_shoulder', 'right_shoulder', 'left_elbow', 'right_elbow', 'left_wrist', 'right_wrist', 'left_middle1', 'right_middle1'
+    ]
+    joint_pos = []
+    root_rot = []
+    for i in range(len(smplx_data_frames)):
+        sub_joint_pos = []
+        for joint in smplx_joints:
+            sub_joint_pos.append(smplx_data_frames[i][joint][0])
+        joint_pos.append(sub_joint_pos)
+        root_rot.append(smplx_data_frames[i]['pelvis'][1][[1,2,3,0]])
+    joint_pos = np.array(joint_pos)
+    root_rot = np.array(root_rot)
+
+    phc_data = {
+        "joints": joint_pos,
+        "root_rot": root_rot,
+    }
+    with open(args.save_path, "wb") as f:
+        joblib.dump(phc_data, f)
+        print(f"Saved to {args.save_path}")
+
+    exit()
    
     # Initialize the retargeting system
     retarget = GMR(

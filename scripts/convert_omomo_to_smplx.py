@@ -5,13 +5,13 @@ import pickle
 
 
 # these paths are from the original OMOMO dataset
-motion_path1 = "/home/yanjieze/projects/g1_wbc/motion_data/omomo_data/train_diffusion_manip_seq_joints24.p"
-motion_path2 = "/home/yanjieze/projects/g1_wbc/motion_data/omomo_data/test_diffusion_manip_seq_joints24.p"
+motion_path1 = "./data/omomo_data/train_diffusion_manip_seq_joints24.p"
+motion_path2 = "./data/omomo_data/test_diffusion_manip_seq_joints24.p"
 all_motion_data1 = joblib.load(motion_path1)
 all_motion_data2 = joblib.load(motion_path2)
 
 # save as individual files
-target_dir = "/home/yanjieze/projects/g1_wbc/motion_data/OMOMO_smplx"
+target_dir = "./data/OMOMO_smplx"
 os.makedirs(target_dir, exist_ok=True)
 for motion_data in [all_motion_data1, all_motion_data2]:
     for data_name in motion_data.keys():
