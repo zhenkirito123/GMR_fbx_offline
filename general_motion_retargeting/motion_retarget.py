@@ -37,10 +37,11 @@ class GeneralMotionRetargeting:
         #     ratio = actual_human_height / ik_config["human_height_assumption"]
         # else:
         #     ratio = 1.0
+        ratio = 1.32 / actual_human_height
             
         # adjust the human scale table
         for key in ik_config["human_scale_table"].keys():
-            ik_config["human_scale_table"][key] = ik_config["human_scale_table"][key] #* ratio
+            ik_config["human_scale_table"][key] = ik_config["human_scale_table"][key] * ratio
     
 
         # used for retargeting

@@ -28,7 +28,7 @@ IK_CONFIG_DICT = {
         "galaxea_r1pro": IK_CONFIG_ROOT / "smplx_to_r1pro.json",
     },
     "intermimic":{
-        "unitree_g1": IK_CONFIG_ROOT / "smplx_to_g1.json",
+        "unitree_g1": IK_CONFIG_ROOT / "intermimic_to_g1.json",
     },
     "bvh":{
         "unitree_g1": IK_CONFIG_ROOT / "bvh_to_g1.json",
