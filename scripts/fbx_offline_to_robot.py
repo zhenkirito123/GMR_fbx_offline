@@ -90,7 +90,7 @@ if __name__ == "__main__":
     retargeter = GMR(
         src_human="fbx_offline",  # Use the new fbx configuration
         tgt_robot=args.robot,
-        actual_human_height=1.8,
+        actual_human_height=1.78,
     )
 
     height_offset = offset_to_ground(retargeter, data_frames)
